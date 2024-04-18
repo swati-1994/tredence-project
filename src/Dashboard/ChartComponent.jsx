@@ -4,6 +4,8 @@ import HighchartsReact from "highcharts-react-official";
 
 const ChartComponent = (props) => {
   const [formatData, setFormatData] = useState(null);
+  let category = props.filterData?.categoryFilter.value;
+  const Loading = props.loading;
 
   useEffect(() => {
     function formatData() {
@@ -24,7 +26,9 @@ const ChartComponent = (props) => {
       type: "column",
     },
     title: {
-      text: "Products in selected category",
+      text: category
+        ? "Products in the " + category
+        : "Products in all category",
     },
     xAxis: {
       type: "Products",

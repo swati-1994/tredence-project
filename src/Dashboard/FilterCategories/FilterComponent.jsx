@@ -66,7 +66,10 @@ const FilterComponent = (props) => {
 
       <div className="my-10">
         <div className=" bottom-0 left-0 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          <button onClick={() => props.getAllFilters(filter)}>
+          <button
+            disabled={filter != null ? false : true}
+            onClick={() => props.getAllFilters(filter)}
+          >
             Run Report
           </button>
         </div>

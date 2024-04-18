@@ -37,6 +37,8 @@ const DashboardComponent = () => {
     }
   }
 
+  console.log("all filters in dashboard", allFilters?.categoryFilter.value);
+
   return (
     <div className="flex">
       <div className="w-1/4 h-screen border border-indigo-600">
@@ -46,7 +48,11 @@ const DashboardComponent = () => {
         />
       </div>
       <div className="w-3/4 float-right">
-        <ChartComponent products={data} />
+        <ChartComponent
+          products={data}
+          loading={loading}
+          filterData={allFilters}
+        />
       </div>
     </div>
   );
