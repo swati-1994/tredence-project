@@ -36,11 +36,6 @@ const FilterComponent = (props) => {
     return requiredArr;
   }
 
-  function clearFilters() {
-    setFilter(null);
-    setClick(true);
-  }
-
   const formattedCategory = formatData(category);
   const formattedProduct = formatData(product);
 
@@ -51,13 +46,14 @@ const FilterComponent = (props) => {
           <h1 className="text-lg">Filters</h1>
         </div>
         <div className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          <button onClick={clearFilters}>Clear</button>
+          <button onClick={() => props.getClearFilter(true)}>Clear</button>
         </div>
       </div>
       <div className="my-10">
+        {console.log("i am re rendering sdjkfhjsdhfhjsdfhjdsfhdgfhdg", filter)}
         <CategoryFilterComp
           removeFilters={click}
-          getAllFilters={(filter) => setFilter(filter)}
+          getAllFilters={(filter) => setFilter(click ? null : filter)}
           category={formattedCategory}
           product={formattedProduct}
           data={props.filterData}

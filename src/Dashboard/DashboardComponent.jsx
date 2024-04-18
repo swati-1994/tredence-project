@@ -6,8 +6,10 @@ const DashboardComponent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [allFilters, setAllFilters] = useState(null);
+  const [clear, setClear] = useState(false);
 
   useEffect(() => {
+    //getting the list of all the products
     const fetchDataOfProducts = async () => {
       try {
         const response = await fetch(`https://dummyjson.com/products`);
@@ -24,11 +26,13 @@ const DashboardComponent = () => {
         setLoading(false);
       }
     };
+
     fetchDataOfProducts();
-  }, []);
+  }, [clear]);
 
   function filterChart(allFilters) {
     setAllFilters(allFilters);
+
     if (allFilters?.categoryFilter && data.length) {
       let filteredData = data.filter(
         (x) => x.category == allFilters?.categoryFilter?.value
@@ -37,7 +41,13 @@ const DashboardComponent = () => {
     }
   }
 
-  console.log("all filters in dashboard", allFilters?.categoryFilter.value);
+  function clearAllFilters(clear) {
+    setClear(clear);
+    setAllFilters(null);
+  }
+
+  console.log("allFilters allFilters allFilters", allFilters);
+  console.log("clearAllFilters clearAllFilters clearAllFilters", clear);
 
   return (
     <div className="flex">
@@ -45,6 +55,7 @@ const DashboardComponent = () => {
         <FilterComponent
           filterData={data}
           getAllFilters={(allFilters) => filterChart(allFilters)}
+          getClearFilter={(clear) => clearAllFilters(clear)}
         />
       </div>
       <div className="w-3/4 float-right">

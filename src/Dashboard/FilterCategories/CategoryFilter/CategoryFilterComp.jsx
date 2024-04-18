@@ -13,10 +13,13 @@ const CategoryFilterComp = ({
   const [active, setActive] = useState(false);
   const [word, setWord] = useState(null);
   const [products, setProducts] = useState(null);
+  const [defaultVal, setDefaultVal] = useState(null);
 
   if (selectedOption?.length) {
     setActive(true);
   }
+
+  const dummyData = { value: "no value", label: "no value" };
 
   useEffect(() => {
     if (removeFilters == true) {
@@ -30,15 +33,19 @@ const CategoryFilterComp = ({
     getAllFilters(filterObj);
 
     //products filter
-    setProducts(data?.filter((x) => x.category === selectedOption.value));
-  }, [selectedOption, active, word]);
+    setProducts(data?.filter((x) => x.category === selectedOption?.value));
+
+    //setting default default
+    setDefaultVal(!removeFilters ? selectedOption : dummyData);
+  }, [selectedOption, active, word, removeFilters]);
 
   return (
     <div>
       <h4 className="text-left">Select Categories:</h4>
       <div>
+        {console.log()}
         <Select
-          defaultValue={selectedOption}
+          defaultValue={defaultVal}
           onChange={setSelectedOption}
           options={category}
         />
