@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ChartComponent from "./ChartComponent";
-import FilterComponent from "./FilterCategories/FilterComponent";
+import FilterComponent from "../Dashboard/FilterCategories/FilterComponent";
 const DashboardComponent = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

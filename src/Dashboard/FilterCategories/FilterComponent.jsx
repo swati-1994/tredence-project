@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import CategoryFilterComp from "./CategoryFilter/CategoryFilterComp";
-import ProductFilterComp from "./CategoryFilter/ProductFilter/ProductFilterComp";
 
 const FilterComponent = (props) => {
   const allData = props?.filterData;
@@ -16,8 +15,6 @@ const FilterComponent = (props) => {
 
       for (let i = 0; i < allData?.length; i++) {
         catArr.push(allData[i].category);
-
-        // prodArr.push(allData[i].title);
       }
 
       setCategory([...new Set(catArr)]);
